@@ -46,7 +46,9 @@ def get_filters():
     print('-'*40)
     print('\nHello! Let\'s explore some US bikeshare data!')
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
-    city = input("\nDo you want to analyze data from Chicago, New York City, or Washington? \n").lower()
+    prompt = "\nDo you want to analyze data from Chicago, New York City, or Washington? \n"
+    valid_entries = CITY_DATA.keys()
+    city = check_data_entry(prompt, valid_entries)
     # Check if city is valid
     while CITY_DATA.get(city) is None:
         # Check if user want to continue
