@@ -24,7 +24,11 @@ def check_user_entry(prompt, valid_entries):
         user_input = str(input(prompt)).lower()
 
         while user_input not in valid_entries :
-            print('Sorry... it seems like you\'re not typing a correct entry.')
+            contyn = input('Sorry... it seems like you\'re not typing a correct entry. Do you want to try again? Y/N \n')
+            if contyn != "y" and contyn != "yes":
+                # Reference sys.exit() for stopping code: https://pythonguides.com/python-exit-command/#:~:text=exit()%20commands.-,Python%20quit()%20function,be%20used%20in%20the%20interpreter.
+                sys.exit()
+            else:
             print('Let\'s try again!')
             user_input = str(input(prompt)).lower()
 
