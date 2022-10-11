@@ -8,6 +8,36 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
+def check_user_entry(prompt, valid_entries):
+    """
+    Asks user to type some input and verify if the entry typed is valid.
+    Args:
+        (str) prompt - message to display to the user
+        (list) valid_entries - list of string that should be accepted
+    Returns:
+        (str) user_input - the user's valid input
+    """
+    # Source: Reviewer suggestion from Python Project for Udacity's
+    # Programming for Data Science with Python course
+
+    try:
+        user_input = str(input(prompt)).lower()
+
+        while user_input not in valid_entries :
+            contyn = input('Sorry... it seems like you\'re not typing a correct entry. Do you want to try again? Y/N \n')
+            if contyn != "y" and contyn != "yes":
+                # Reference sys.exit() for stopping code: https://pythonguides.com/python-exit-command/#:~:text=exit()%20commands.-,Python%20quit()%20function,be%20used%20in%20the%20interpreter.
+                sys.exit()
+            else:
+            print('Let\'s try again!')
+            user_input = str(input(prompt)).lower()
+
+        print('Great! the chosen entry is: {}\n'.format(user_input))
+        return user_input
+    # Print out error message if above code gives error
+    except:
+        print('Seems like there is an issue with your input')
+
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
@@ -19,17 +49,10 @@ def get_filters():
     """
     print('-'*40)
     print('\nHello! Let\'s explore some US bikeshare data!')
-    # Get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
-    city = input("\nDo you want to analyze data from Chicago, New York City, or Washington? \n").lower()
-    # Check if city is valid
-    while CITY_DATA.get(city) is None:
-        # Check if user want to continue
-        contyn = input("Sorry. I can't find your city. Do you want to continue? Y/N \n").lower()
-        if contyn != "y" and contyn != "yes":
-            # Reference sys.exit() for stopping code: https://pythonguides.com/python-exit-command/#:~:text=exit()%20commands.-,Python%20quit()%20function,be%20used%20in%20the%20interpreter.
-            sys.exit()
-        else:
-            city = input("Do you want to analyze data from Chicago, New York City, or Washington? \n").lower()
+    # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
+    prompt = "\nDo you want to analyze data from Chicago, New York City, or Washington? \n"
+    valid_entries = CITY_DATA.keys()
+    city = check_data_entry(prompt, valid_entries)
 
     # Get user filter type for data (month, day, both, or none)
     filter_type = {"month": {"january", "february", "march", "april",
