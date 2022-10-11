@@ -53,15 +53,6 @@ def get_filters():
     prompt = "\nDo you want to analyze data from Chicago, New York City, or Washington? \n"
     valid_entries = CITY_DATA.keys()
     city = check_data_entry(prompt, valid_entries)
-    # Check if city is valid
-    while CITY_DATA.get(city) is None:
-        # Check if user want to continue
-        contyn = input("Sorry. I can't find your city. Do you want to continue? Y/N \n").lower()
-        if contyn != "y" and contyn != "yes":
-            # Reference sys.exit() for stopping code: https://pythonguides.com/python-exit-command/#:~:text=exit()%20commands.-,Python%20quit()%20function,be%20used%20in%20the%20interpreter.
-            sys.exit()
-        else:
-            city = input("Do you want to analyze data from Chicago, New York City, or Washington? \n").lower()
 
     # Get user filter type for data (month, day, both, or none)
     filter_type = {"month": {"january", "february", "march", "april",
